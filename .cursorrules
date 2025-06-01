@@ -1,0 +1,99 @@
+# .cursorrules
+
+Bu proje, modern freelance iş yönetimi için geliştirilmiş bir otomasyon uygulamasıdır. Temiz kod, sürdürülebilirlik, erişilebilirlik ve profesyonel kullanıcı deneyimi ilkelerine sadık kalınarak geliştirilmektedir. Aşağıdaki kurallar, uygulamanın güvenli, performanslı, okunabilir ve ölçeklenebilir olmasını sağlar.
+
+## 🧠 Genel Prensipler
+
+- DRY, KISS ve SOLID prensiplerine bağlı kal
+- Her bileşen tek bir sorumluluğa sahip olsun (Single Responsibility)
+- Tip güvenliğini korumak için tüm verileri TypeScript ile tanımla
+- Mock veriler ile gerçek veri yapısı birebir uyumlu olmalı
+
+---
+
+## 🚀 Performans
+
+- React bileşenlerini memo, useMemo, useCallback gibi optimizasyon teknikleriyle koru
+- Sadece aktif rotadaki bileşenleri yükle (lazy load / code splitting)
+- jsPDF işlemlerini async olarak arka planda çalıştır, UI bloklanmasın
+- Formlara debounce uygulayarak gereksiz state güncellemelerinden kaçın
+
+---
+
+## 🎨 UI/UX
+
+- TailwindCSS ile responsive ve sezgisel tasarımlar oluştur
+- Modül bazlı CSS utility sınıfları ile karmaşayı engelle
+- Kullanıcı dostu boş ekran (empty state), yükleniyor ekranı ve hata mesajları ekle
+- Form alanlarına input validation, helper text ve başarı/görsel geri bildirim sağla
+- Renkleri erişilebilirlik standartlarına uygun seç (WCAG AA/AAA)
+
+---
+
+## 🧾 Belgeler (Invoice / Contract)
+
+- Belgeler için json schema tanımı oluştur ve bunu hem form validasyonunda hem PDF üretiminde kullan
+- jsPDF kullanırken sayfa kenar boşlukları, yazı tipi boyutları ve hizalamalara dikkat et
+- Her belge için benzersiz ID üret (UUID) ve tarih/saat damgası ekle
+- Belgeleri indirme ve e-posta ile gönderme özelliklerini planla
+
+---
+
+## 🧱 Uygulama Mimarisi
+
+- `src/pages` → Rotalara bağlı sayfalar
+- `src/components` → Tekrar kullanılabilir UI bileşenleri
+- `src/hooks` → Custom hook’lar
+- `src/types` → Global tip tanımları
+- `src/lib/pdf` → jsPDF ile ilgili yardımcı fonksiyonlar
+- `src/utils` → Genel yardımcı fonksiyonlar (ör. formatDate, validateForm)
+- `src/data` → Mock data yapısı
+- `src/context` → Global context/state yönetimi (örneğin `useClientStore`)
+
+---
+
+## 🔐 Güvenlik
+
+- Formlara hem frontend hem backend’de validasyon ekle (Yup, Zod önerilir)
+- PDF içinde kullanıcıdan gelen input verilerini escape et (XSS koruması)
+- Çevresel değişkenleri (örn. API anahtarı, veritabanı bağlantısı) `.env` dosyalarında tanımla
+
+---
+
+## 🌐 Routing & Navigation
+
+- `React Router` ile mantıklı URL yapısı kullan:
+  - `/dashboard`
+  - `/clients/:id`
+  - `/invoices/new`
+  - `/contracts/:id/edit`
+- Route guard ile erişim kontrolü uygula (giriş yapılmamışsa yönlendir)
+- Breadcrumbs veya sekme başlıkları ile konum belirginliği sağla
+
+---
+
+## 💾 State Management
+
+- Yerel state için React useState/useReducer kullan
+- Global state için lightweight çözüm önerisi: Zustand
+- LocalStorage yalnızca oturum süresi veya basit cache işlemleri için kullan
+
+---
+
+## 🧪 Test & Debug
+
+- Component bazlı testler için React Testing Library kullan
+- PDF çıktılarının testini görsel olarak manuel doğrula
+- `console.log` yerine `debug()` veya `Logger` sınıfı kullan
+- TypeScript ile tüm `any` kullanımlarından kaçın, zorunluysa not ekle
+
+---
+
+## 🛠 Build & Deployment
+
+- `vite` veya `CRA` build optimizasyonlarını kullan
+- Development ve production ortamları için ayrı `env` dosyaları oluştur
+- CI/CD sürecine lint, test ve build adımları ekle (GitHub Actions / Vercel CI)
+
+---
+
